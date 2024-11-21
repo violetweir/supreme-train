@@ -1,7 +1,7 @@
 # MobileMamba
 
 --- 
-Official PyTorch implementation of "MobileMamba: Lightweight Multi-Receptive Visual Mamba Network".
+Official PyTorch implementation of "**MobileMamba: Lightweight Multi-Receptive Visual Mamba Network**".
 
 [Haoyang He<sup>1*</sup>](https://scholar.google.com/citations?hl=zh-CN&user=8NfQv1sAAAAJ),
 [Jiangning Zhang<sup>2*</sup>](https://zhangzjn.github.io),
@@ -40,54 +40,54 @@ MobileMamba achieves up to 83.6% on Top-1, surpassing existing state-of-the-art 
 ### Image Classification for [ImageNet-1K](https://www.image-net.org):
 | Model                    | FLOPs | #Params | Resolution | Top-1 |                      Cfg                      |                        Log                         |                        Model                         |
 |--------------------------|:-----:|:-------:|:----------:|:-----:|:---------------------------------------------:|:--------------------------------------------------:|:----------------------------------------------------:|
-| MobileMamba-T2           | 255M  |  8.8M   | 192 x 192  | 71.5  | [cfg](configs/mobilemamba/mobilemamba_t2.py)  |  [log](weights/MobileMamba_T2/mobilemamba_t2.txt)  |  [model](weights/MobileMamba_T2/mobilemamba_t2.pth)  |
-| MobileMamba-T2† | 255M  |  8.8M   | 192 x 192  | 76.9  | [cfg](configs/mobilemamba/mobilemamba_t2s.py) | [log](weights/MobileMamba_T2s/mobilemamba_t2s.txt) | [model](weights/MobileMamba_T2s/mobilemamba_t2s.pth) |
-| MobileMamba-T4           | 413M  |  14.2M  | 192 x 192  | 76.1  | [cfg](configs/mobilemamba/mobilemamba_t4.py)  |  [log](weights/MobileMamba_T4/mobilemamba_t4.txt)  |  [model](weights/MobileMamba_T4/mobilemamba_t4.pth)  |
-| MobileMamba-T4†          | 413M  |  14.2M  | 192 x 192  | 78.9  | [cfg](configs/mobilemamba/mobilemamba_t4s.py) | [log](weights/MobileMamba_T4s/mobilemamba_t4s.txt) | [model](weights/MobileMamba_T4s/mobilemamba_t4s.pth) |
-| MobileMamba-S6           | 652M  |  15.0M  | 224 x 224  | 78.0  | [cfg](configs/mobilemamba/mobilemamba_s6.py)  |  [log](weights/MobileMamba_S6/mobilemamba_s6.txt)  |  [model](weights/MobileMamba_S6/mobilemamba_s6.pth)  |
-| MobileMamba-S6†          | 652M  |  15.0M  | 224 x 224  | 80.7  | [cfg](configs/mobilemamba/mobilemamba_s6s.py) | [log](weights/MobileMamba_S6s/mobilemamba_s6s.txt) | [model](weights/MobileMamba_S6s/mobilemamba_s6s.pth) |
-| MobileMamba-B1           | 1080M |  17.1M  | 256 x 256  | 79.9  | [cfg](configs/mobilemamba/mobilemamba_b1.py)  |  [log](weights/MobileMamba_B1/mobilemamba_b1.txt)  |  [model](weights/MobileMamba_B1/mobilemamba_b1.pth)  |
-| MobileMamba-B1†          | 1080M |  17.1M  | 256 x 256  | 82.2  | [cfg](configs/mobilemamba/mobilemamba_b1s.py) | [log](weights/MobileMamba_B1s/mobilemamba_b1s.txt) | [model](weights/MobileMamba_B1s/mobilemamba_b1s.pth) |
-| MobileMamba-B2           | 2427M |  17.1M  | 384 x 384  | 81.6  | [cfg](configs/mobilemamba/mobilemamba_b2.py)  |  [log](weights/MobileMamba_B2/mobilemamba_b2.txt)  |  [model](weights/MobileMamba_B2/mobilemamba_b2.pth)  |
-| MobileMamba-B2†          | 2427M |  17.1M  | 384 x 384  | 83.3  | [cfg](configs/mobilemamba/mobilemamba_b2s.py) | [log](weights/MobileMamba_B2s/mobilemamba_b2s.txt) | [model](weights/MobileMamba_B2s/mobilemamba_b2s.pth) |
-| MobileMamba-B4           | 4313M |  17.1M  | 512 x 512  | 82.5  | [cfg](configs/mobilemamba/mobilemamba_b4.py)  |  [log](weights/MobileMamba_B4/mobilemamba_b4.txt)  |  [model](weights/MobileMamba_B4/mobilemamba_b4.pth)  |
-| MobileMamba-B4†          | 4313M |  17.1M  | 512 x 512  | 83.6  | [cfg](configs/mobilemamba/mobilemamba_b4s.py) | [log](weights/MobileMamba_B4s/mobilemamba_b4s.txt) | [model](weights/MobileMamba_B4s/mobilemamba_b4s.pth) |
+| MobileMamba-T2           | 255M  |  8.8M   | 192 x 192  | 71.5  | [cfg](configs/mobilemamba/mobilemamba_t2.py)  |  [log](weights/MobileMamba_T2/mobilemamba_t2.txt)  |  [model](https://drive.google.com/file/d/1LXh5wjVEUu5Kj1foclC9zmlKsy7JpMQ-/view?usp=drive_link)  |
+| MobileMamba-T2† | 255M  |  8.8M   | 192 x 192  | 76.9  | [cfg](configs/mobilemamba/mobilemamba_t2s.py) | [log](weights/MobileMamba_T2s/mobilemamba_t2s.txt) | [model](https://drive.google.com/file/d/14UUeEeN62a1jo5qit-m0yChQnNU8JWQG/view?usp=drive_link) |
+| MobileMamba-T4           | 413M  |  14.2M  | 192 x 192  | 76.1  | [cfg](configs/mobilemamba/mobilemamba_t4.py)  |  [log](weights/MobileMamba_T4/mobilemamba_t4.txt)  |  [model](https://drive.google.com/file/d/17-5Q93_cEhBYMDzWTq4sDcc4_c_ezwpd/view?usp=drive_link)  |
+| MobileMamba-T4†          | 413M  |  14.2M  | 192 x 192  | 78.9  | [cfg](configs/mobilemamba/mobilemamba_t4s.py) | [log](weights/MobileMamba_T4s/mobilemamba_t4s.txt) | [model](https://drive.google.com/file/d/12e1RKJEYDWVjOZuQLycjOUkA5PqCUnwu/view?usp=drive_link) |
+| MobileMamba-S6           | 652M  |  15.0M  | 224 x 224  | 78.0  | [cfg](configs/mobilemamba/mobilemamba_s6.py)  |  [log](weights/MobileMamba_S6/mobilemamba_s6.txt)  |  [model](https://drive.google.com/file/d/13en_zNB2wuHmnHKZMUQDe4KizlaTCHbP/view?usp=drive_link)  |
+| MobileMamba-S6†          | 652M  |  15.0M  | 224 x 224  | 80.7  | [cfg](configs/mobilemamba/mobilemamba_s6s.py) | [log](weights/MobileMamba_S6s/mobilemamba_s6s.txt) | [model](https://drive.google.com/file/d/1ujVeWpoICjioRF0aB7PD1fadM4PGFRfl/view?usp=drive_link) |
+| MobileMamba-B1           | 1080M |  17.1M  | 256 x 256  | 79.9  | [cfg](configs/mobilemamba/mobilemamba_b1.py)  |  [log](weights/MobileMamba_B1/mobilemamba_b1.txt)  |  [model](https://drive.google.com/file/d/1ODO1XM2luMfczbDLJxHrEl-ie7yUscAC/view?usp=drive_link)  |
+| MobileMamba-B1†          | 1080M |  17.1M  | 256 x 256  | 82.2  | [cfg](configs/mobilemamba/mobilemamba_b1s.py) | [log](weights/MobileMamba_B1s/mobilemamba_b1s.txt) | [model](https://drive.google.com/file/d/15rBhYky_f7jNSknXujuwQESaIkiTBAR1/view?usp=drive_link) |
+| MobileMamba-B2           | 2427M |  17.1M  | 384 x 384  | 81.6  | [cfg](configs/mobilemamba/mobilemamba_b2.py)  |  [log](weights/MobileMamba_B2/mobilemamba_b2.txt)  |  [model](https://drive.google.com/file/d/1tJJZqeP09D_IAKKFuQtJQOYm4eNGjr1r/view?usp=drive_link)  |
+| MobileMamba-B2†          | 2427M |  17.1M  | 384 x 384  | 83.3  | [cfg](configs/mobilemamba/mobilemamba_b2s.py) | [log](weights/MobileMamba_B2s/mobilemamba_b2s.txt) | [model](https://drive.google.com/file/d/1KuleL6Fi84zkjIhkRFbR4lqGa2iu6bOp/view?usp=drive_link) |
+| MobileMamba-B4           | 4313M |  17.1M  | 512 x 512  | 82.5  | [cfg](configs/mobilemamba/mobilemamba_b4.py)  |  [log](weights/MobileMamba_B4/mobilemamba_b4.txt)  |  [model](https://drive.google.com/file/d/1MiGLHSldK2JpbQEe-7VlmFsaCdugDnYR/view?usp=drive_link)  |
+| MobileMamba-B4†          | 4313M |  17.1M  | 512 x 512  | 83.6  | [cfg](configs/mobilemamba/mobilemamba_b4s.py) | [log](weights/MobileMamba_B4s/mobilemamba_b4s.txt) | [model](https://drive.google.com/file/d/1KevdesGm8Pb4fEbgZ5JY4FMy9IQgYbiZ/view?usp=drive_link) |
 
 # Downstream Results
 ## Object Detection and Instant Segmentation Results
 ### Object Detection  and Instant Segmentation Performance Based on [Mask-RCNN](https://openaccess.thecvf.com/content_ICCV_2017/papers/He_Mask_R-CNN_ICCV_2017_paper.pdf) for [COCO2017](https://cocodataset.org):
 | Backbone | AP<sup>b</sup> | AP<sup>b</sup><sub>50</sub> | AP<sup>b</sup><sub>75</sub> | AP<sup>b</sup><sub>S</sub> | AP<sup>b</sup><sub>M</sub> | AP<sup>b</sup><sub>L</sub> | AP<sup>m</sup> | AP<sup>m</sup><sub>50</sub> | AP<sup>m</sup><sub>75</sub> | AP<sup>m</sup><sub>S</sub> | AP<sup>m</sup><sub>M</sub> | AP<sup>m</sup><sub>L</sub> | #Params | FLOPs |                    Cfg                     |                    Log                     |                    Model                     |
 |:--------:|:--------------:|:---------------------------:|:---------------------------:|:--------------------------:|:--------------------------:|:--------------------------:|:--------------:|:---------------------------:|:---------------------------:|:--------------------------:|:--------------------------:|:--------------------------:|:-------:|:-----:|:------------------------------------------:|:------------------------------------------:|:--------------------------------------------:|
-|  MobileMamba-B1  |      40.6      |            61.8             |            43.8             |            22.4            |            43.5            |            55.9            |      37.4      |            58.9             |            39.9             |            17.1            |            39.9            |            56.4            |  38.0M  | 178G  | [cfg](downstream/det/configs/mask_rcnn/mask-rcnn_mobilemamba_b1_fpn_1x_coco.py) | [log](weights/downstream/det/maskrcnn.log) | [model](weights/downstream/det/maskrcnn.pth) |
+|  MobileMamba-B1  |      40.6      |            61.8             |            43.8             |            22.4            |            43.5            |            55.9            |      37.4      |            58.9             |            39.9             |            17.1            |            39.9            |            56.4            |  38.0M  | 178G  | [cfg](downstream/det/configs/mask_rcnn/mask-rcnn_mobilemamba_b1_fpn_1x_coco.py) | [log](weights/downstream/det/maskrcnn.log) | [model](https://drive.google.com/file/d/1vxp7cV2YXxu2GJmIgoAYE7bARve9qlBp/view?usp=drive_link) |
 
 ### Object Detection Performance Based on [RetinaNet](https://openaccess.thecvf.com/content_ICCV_2017/papers/Lin_Focal_Loss_for_ICCV_2017_paper.pdf) for [COCO2017](https://cocodataset.org):
 | Backbone |  AP  | AP<sub>50</sub> | AP<sub>75</sub> | AP<sub>S</sub> | AP<sub>M</sub> | AP<sub>L</sub> | #Params | FLOPs |                     Cfg                     |                     Log                     |                     Model                     |
 |:--------:|:----:|:---------------:|:---------------:|:--------------:|:--------------:|:--------------:|:-------:|:-----:|:-------------------------------------------:|:-------------------------------------------:|:---------------------------------------------:|
-|  MobileMamba-B1  | 39.6 |      59.8       |      42.4       |      21.5      |      43.4      |      53.9      |  27.1M  | 151G  | [cfg](downstream/det/configs/retinanet/retinanet_mobilemamba_b1_fpn_1x_coco.py) | [log](weights/downstream/det/retinanet.log) | [model](weights/downstream/det/retinanet.pth) |
+|  MobileMamba-B1  | 39.6 |      59.8       |      42.4       |      21.5      |      43.4      |      53.9      |  27.1M  | 151G  | [cfg](downstream/det/configs/retinanet/retinanet_mobilemamba_b1_fpn_1x_coco.py) | [log](weights/downstream/det/retinanet.log) | [model](https://drive.google.com/file/d/1uQzA-k721hacqnORf5WPlYFK9rAxauDC/view?usp=drive_link) |
 
 ### Object Detection Performance Based on [SSDLite](https://openaccess.thecvf.com/content_ICCV_2019/papers/Howard_Searching_for_MobileNetV3_ICCV_2019_paper.pdf) for [COCO2017](https://cocodataset.org):
 |      Backbone       |  AP  | AP<sub>50</sub> | AP<sub>75</sub> | AP<sub>S</sub> | AP<sub>M</sub> | AP<sub>L</sub> | #Params | FLOPs |                                      Cfg                                      |              Log               |                      Model                      |
 |:-------------------:|:----:|:---------------:|:---------------:|:--------------:|:--------------:|:--------------:|:-------:|:-----:|:-----------------------------------------------------------------------------:|:------------------------------:|:-----------------------------------------------:|
-|   MobileMamba-B1    | 24.0 |      39.5       |      24.0       |      3.1       |      23.4      |      46.9      |  18.0M  | 1.7G  |   [cfg](downstream/det/configs/ssd/ssdlite_mobilemamba_b1_8gpu_2lr_coco.py)   |   [log](weights/downstream/det/ssdlite.log)   |   [model](weights/downstream/det/ssdlite.pth)   |
-| MobileMamba-B1-r512 | 29.5 |      47.7       |      30.4       |      8.9       |      35.0      |      47.0      |  18.0M  | 4.4G  | [cfg](downstream/det/configs/ssd/ssdlite_mobilemamba_b1_8gpu_2lr_512_coco.py) | [log](weights/downstream/det/ssdlite_512.log) | [model](weights/downstream/det/ssdlite_512.pth) |
+|   MobileMamba-B1    | 24.0 |      39.5       |      24.0       |      3.1       |      23.4      |      46.9      |  18.0M  | 1.7G  |   [cfg](downstream/det/configs/ssd/ssdlite_mobilemamba_b1_8gpu_2lr_coco.py)   |   [log](weights/downstream/det/ssdlite.log)   |   [model](https://drive.google.com/file/d/1EUuCJMqJlOkE3sQlLA0n04YPW7B-h05F/view?usp=drive_link)   |
+| MobileMamba-B1-r512 | 29.5 |      47.7       |      30.4       |      8.9       |      35.0      |      47.0      |  18.0M  | 4.4G  | [cfg](downstream/det/configs/ssd/ssdlite_mobilemamba_b1_8gpu_2lr_512_coco.py) | [log](weights/downstream/det/ssdlite_512.log) | [model](https://drive.google.com/file/d/12g-Dq6NoiN4vK05lLC91L8deTKHtJ0iz/view?usp=drive_link) |
 
 ## Semantic Segmentation Results
 ### Semantic Segmentation Based on [Semantic FPN](https://openaccess.thecvf.com/content_CVPR_2019/papers/Kirillov_Panoptic_Feature_Pyramid_Networks_CVPR_2019_paper.pdf) for [ADE20k](http://sceneparsing.csail.mit.edu/):
 | Backbone | aAcc | mIoU | mAcc | #Params | FLOPs |                  Cfg                  |                  Log                  |                  Model                  |
 |:--------:|:----:|:----:|:----:|:-------:|:-----:|:-------------------------------------:|:-------------------------------------:|:---------------------------------------:|
-| MobileMamba-B4 | 79.9 | 42.5 | 53.7 |  19.8M  | 5.6G  | [cfg](downstream/seg/configs/sem_fpn/fpn_mobilemamba_b4-160k_ade20k-512x512.py) | [log](weights/downstream/seg/fpn.log) | [model](weights/downstream/seg/fpn.pth) |
+| MobileMamba-B4 | 79.9 | 42.5 | 53.7 |  19.8M  | 5.6G  | [cfg](downstream/seg/configs/sem_fpn/fpn_mobilemamba_b4-160k_ade20k-512x512.py) | [log](weights/downstream/seg/fpn.log) | [model](https://drive.google.com/file/d/109TnG4OZCHtEMxC4GJkoARAO_n6cWRzD/view?usp=drive_link) |
 
 
 ### Semantic Segmentation Based on [DeepLabv3](https://arxiv.org/pdf/1706.05587.pdf) for [ADE20k](http://sceneparsing.csail.mit.edu/):
 |    Backbone    | aAcc | mIoU | mAcc | #Params | FLOPs |                     Cfg                     |                     Log                     |                     Model                     |
 |:--------------:|:----:|:----:|:----:|:-------:|:-----:|:-------------------------------------------:|:-------------------------------------------:|:---------------------------------------------:|
-| MobileMamba-B4 | 76.3 | 36.6 | 47.1 |  23.4M  | 4.7G  | [cfg](downstream/seg/configs/deeplabv3/deeplabv3_mobilemamba_b4-80k_ade20k-512x512.py) | [log](weights/downstream/seg/deeplabv3.log) | [model](weights/downstream/seg/deeplabv3.pth) |
+| MobileMamba-B4 | 76.3 | 36.6 | 47.1 |  23.4M  | 4.7G  | [cfg](downstream/seg/configs/deeplabv3/deeplabv3_mobilemamba_b4-80k_ade20k-512x512.py) | [log](weights/downstream/seg/deeplabv3.log) | [model](https://drive.google.com/file/d/1vlWE7G6nbwnqh-J4nz4oD-CBYKQdg_I-/view?usp=drive_link) |
 
 
 ### Semantic Segmentation Based on [PSPNet](https://openaccess.thecvf.com/content_cvpr_2017/papers/Zhao_Pyramid_Scene_Parsing_CVPR_2017_paper.pdf) for [ADE20k](http://sceneparsing.csail.mit.edu/):
 | Backbone | aAcc | mIoU | mAcc | #Params | FLOPs |                   Cfg                    |                   Log                    |                   Model                    |
 |:--------:|:----:|:----:|:----:|:-------:|:-----:|:----------------------------------------:|:----------------------------------------:|:------------------------------------------:|
-| MobileMamba-B4 | 76.2 | 36.9 | 47.9 |  20.5M  | 4.5G  | [cfg](downstream/seg/configs/pspnet/pspnet_mobilemamba_b4-80k_ade20k-512x512.py) | [log](weights/downstream/seg/pspnet.log) | [model](weights/downstream/seg/pspnet.pth) |
+| MobileMamba-B4 | 76.2 | 36.9 | 47.9 |  20.5M  | 4.5G  | [cfg](downstream/seg/configs/pspnet/pspnet_mobilemamba_b4-80k_ade20k-512x512.py) | [log](weights/downstream/seg/pspnet.log) | [model](https://drive.google.com/file/d/1yU0vwcKhL3sopPS-3keeAwSBQjD8m_OX/view?usp=drive_link) |
 
 ------
 # All Pretrained Weights and Logs
