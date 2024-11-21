@@ -534,7 +534,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 ./tools/dist_test.sh configs/pspnet/pspnet_mobilema
 </details>
 
 
-## Citation
+# Citation
 If our work is helpful for your research, please consider citing:
 ```angular2html
 @article{mobilemamba,
