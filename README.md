@@ -38,20 +38,20 @@ MobileMamba achieves up to 83.6% on Top-1, surpassing existing state-of-the-art 
 ------
 # Classification results
 ### Image Classification for [ImageNet-1K](https://www.image-net.org):
-| Model           | FLOPs | #Params | Resolution | Top-1 |                        Log                         |                        model                         |
-|-----------------|:-----:|:-------:|:----------:|:-----:|:--------------------------------------------------:|:----------------------------------------------------:|
-| MobileMamba-T2  | 255M  |  8.8M   | 192 x 192  | 71.5  |  [log](weights/MobileMamba_T2/mobilemamba_t2.txt)  |  [model](weights/MobileMamba_T2/mobilemamba_t2.pth)  |
-| MobileMamba-T2✝ | 255M  |  8.8M   | 192 x 192  | 76.9  | [log](weights/MobileMamba_T2s/mobilemamba_t2s.txt) | [model](weights/MobileMamba_T2s/mobilemamba_t2s.pth) |
-| MobileMamba-T4  | 413M  |  14.2M  | 192 x 192  | 76.1  |  [log](weights/MobileMamba_T4/mobilemamba_t4.txt)  |  [model](weights/MobileMamba_T4/mobilemamba_t4.pth)  |
-| MobileMamba-T4✝ | 413M  |  14.2M  | 192 x 192  | 78.9  | [log](weights/MobileMamba_T4s/mobilemamba_t4s.txt) | [model](weights/MobileMamba_T4s/mobilemamba_t4s.pth) |
-| MobileMamba-S6  | 652M  |  15.0M  | 224 x 224  | 78.0  |  [log](weights/MobileMamba_S6/mobilemamba_s6.txt)  |  [model](weights/MobileMamba_S6/mobilemamba_s6.pth)  |
-| MobileMamba-S6✝ | 652M  |  15.0M  | 224 x 224  | 80.7  | [log](weights/MobileMamba_S6s/mobilemamba_s6s.txt) | [model](weights/MobileMamba_S6s/mobilemamba_s6s.pth) |
-| MobileMamba-B1  | 1080M |  17.1M  | 256 x 256  | 79.9  |  [log](weights/MobileMamba_B1/mobilemamba_b1.txt)  |  [model](weights/MobileMamba_B1/mobilemamba_b1.pth)  |
-| MobileMamba-B1✝ | 1080M |  17.1M  | 256 x 256  | 82.2  | [log](weights/MobileMamba_B1s/mobilemamba_b1s.txt) | [model](weights/MobileMamba_B1s/mobilemamba_b1s.pth) |
-| MobileMamba-B2  | 2427M |  17.1M  | 384 x 384  | 81.6  |  [log](weights/MobileMamba_B2/mobilemamba_b2.txt)  |  [model](weights/MobileMamba_B2/mobilemamba_b2.pth)  |
-| MobileMamba-B2✝ | 2427M |  17.1M  | 384 x 384  | 83.3  | [log](weights/MobileMamba_B2s/mobilemamba_b2s.txt) | [model](weights/MobileMamba_B2s/mobilemamba_b2s.pth) |
-| MobileMamba-B4  | 4313M |  17.1M  | 512 x 512  | 82.5  |  [log](weights/MobileMamba_B4/mobilemamba_b4.txt)  |  [model](weights/MobileMamba_B4/mobilemamba_b4.pth)  |
-| MobileMamba-B4✝ | 4313M |  17.1M  | 512 x 512  | 83.6  | [log](weights/MobileMamba_B4s/mobilemamba_b4s.txt) | [model](weights/MobileMamba_B4s/mobilemamba_b4s.pth) |
+| Model                    | FLOPs | #Params | Resolution | Top-1 |                        Log                         |                        model                         |
+|--------------------------|:-----:|:-------:|:----------:|:-----:|:--------------------------------------------------:|:----------------------------------------------------:|
+| MobileMamba-T2           | 255M  |  8.8M   | 192 x 192  | 71.5  |  [log](weights/MobileMamba_T2/mobilemamba_t2.txt)  |  [model](weights/MobileMamba_T2/mobilemamba_t2.pth)  |
+| MobileMamba-T2† | 255M  |  8.8M   | 192 x 192  | 76.9  | [log](weights/MobileMamba_T2s/mobilemamba_t2s.txt) | [model](weights/MobileMamba_T2s/mobilemamba_t2s.pth) |
+| MobileMamba-T4           | 413M  |  14.2M  | 192 x 192  | 76.1  |  [log](weights/MobileMamba_T4/mobilemamba_t4.txt)  |  [model](weights/MobileMamba_T4/mobilemamba_t4.pth)  |
+| MobileMamba-T4✝          | 413M  |  14.2M  | 192 x 192  | 78.9  | [log](weights/MobileMamba_T4s/mobilemamba_t4s.txt) | [model](weights/MobileMamba_T4s/mobilemamba_t4s.pth) |
+| MobileMamba-S6           | 652M  |  15.0M  | 224 x 224  | 78.0  |  [log](weights/MobileMamba_S6/mobilemamba_s6.txt)  |  [model](weights/MobileMamba_S6/mobilemamba_s6.pth)  |
+| MobileMamba-S6✝          | 652M  |  15.0M  | 224 x 224  | 80.7  | [log](weights/MobileMamba_S6s/mobilemamba_s6s.txt) | [model](weights/MobileMamba_S6s/mobilemamba_s6s.pth) |
+| MobileMamba-B1           | 1080M |  17.1M  | 256 x 256  | 79.9  |  [log](weights/MobileMamba_B1/mobilemamba_b1.txt)  |  [model](weights/MobileMamba_B1/mobilemamba_b1.pth)  |
+| MobileMamba-B1✝          | 1080M |  17.1M  | 256 x 256  | 82.2  | [log](weights/MobileMamba_B1s/mobilemamba_b1s.txt) | [model](weights/MobileMamba_B1s/mobilemamba_b1s.pth) |
+| MobileMamba-B2           | 2427M |  17.1M  | 384 x 384  | 81.6  |  [log](weights/MobileMamba_B2/mobilemamba_b2.txt)  |  [model](weights/MobileMamba_B2/mobilemamba_b2.pth)  |
+| MobileMamba-B2✝          | 2427M |  17.1M  | 384 x 384  | 83.3  | [log](weights/MobileMamba_B2s/mobilemamba_b2s.txt) | [model](weights/MobileMamba_B2s/mobilemamba_b2s.pth) |
+| MobileMamba-B4           | 4313M |  17.1M  | 512 x 512  | 82.5  |  [log](weights/MobileMamba_B4/mobilemamba_b4.txt)  |  [model](weights/MobileMamba_B4/mobilemamba_b4.pth)  |
+| MobileMamba-B4✝          | 4313M |  17.1M  | 512 x 512  | 83.6  | [log](weights/MobileMamba_B4s/mobilemamba_b4s.txt) | [model](weights/MobileMamba_B4s/mobilemamba_b4s.pth) |
 
 # Downstream Results
 ## Object Detection and Instant Segmentation Results
