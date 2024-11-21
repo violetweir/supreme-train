@@ -13,7 +13,7 @@ Official PyTorch implementation of "**MobileMamba: Lightweight Multi-Receptive V
 [Yabiao Wang<sup>2</sup>](https://scholar.google.com/citations?user=xiK4nFUAAAAJ&hl=zh-CN),
 [Chengjie Wang<sup>2</sup>](https://scholar.google.com/citations?hl=zh-CN&user=fqte5H4AAAAJ),
 Yunsheng Wu<sup>2</sup>,
-[Lei Xie<sup>1</sup>](https://scholar.google.com/citations?hl=zh-CN&user=7ZZ_-m0AAAAJ)
+[Lei Xie<sup>1†</sup>](https://scholar.google.com/citations?hl=zh-CN&user=7ZZ_-m0AAAAJ)
 
 <sup>1</sup>College of Control Science and Engineering, Zhejiang University, 
 <sup>2</sup>Youtu Lab, Tencent,
