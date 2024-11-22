@@ -548,6 +548,7 @@ If our work is helpful for your research, please consider citing:
 # Acknowledgements
 We thank but not limited to following repositories for providing assistance for our research:
 - [EMO](https://github.com/zhangzjn/EMO)
+- [EfficientViT](https://github.com/microsoft/Cream/tree/main/EfficientViT)
 - [VMamba](https://github.com/MzeroMiko/VMamba)
 - [TIMM](https://github.com/rwightman/pytorch-image-models)
 - [MMDetection](https://github.com/open-mmlab/mmdetection)
