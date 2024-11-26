@@ -1,7 +1,7 @@
 # MobileMamba
 
 --- 
-Official PyTorch implementation of "**MobileMamba: Lightweight Multi-Receptive Visual Mamba Network**".
+Official PyTorch implementation of "[**MobileMamba: Lightweight Multi-Receptive Visual Mamba Network**](https://arxiv.org/pdf/2411.15941)".
 
 [Haoyang He<sup>1*</sup>](https://scholar.google.com/citations?hl=zh-CN&user=8NfQv1sAAAAJ),
 [Jiangning Zhang<sup>2*</sup>](https://zhangzjn.github.io),
@@ -540,7 +540,7 @@ If our work is helpful for your research, please consider citing:
 @article{mobilemamba,
   title={MobileMamba: Lightweight Multi-Receptive Visual Mamba Network},
   author={Haoyang He and Jiangning Zhang and Yuxuan Cai and Hongxu Chen and Xiaobin Hu and Zhenye Gan and Yabiao Wang and Chengjie Wang and Yunsheng Wu and Lei Xie},
-  journal={arXiv preprint},
+  journal={arXiv preprint arXiv:2411.15941},
   year={2024}
 }
 ```
