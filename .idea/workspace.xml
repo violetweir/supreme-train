@@ -25,7 +25,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "D:/rwkv/ADer-main",
+    "last_opened_file_path": "E:/wxg_project/DiffusionVideoEditing-main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -56,7 +56,8 @@
       <option name="presentableId" value="Default" />
       <updated>1732199139248</updated>
       <workItem from="1732199140317" duration="12303000" />
-      <workItem from="1733382039656" duration="1397000" />
+      <workItem from="1733382039656" duration="2589000" />
+      <workItem from="1733650654042" duration="1216000" />
     </task>
     <servers />
   </component>
