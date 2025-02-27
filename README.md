@@ -102,7 +102,7 @@ The model weights and log files for all classification and downstream tasks are 
 ## Environments
 ```shell
 pip3 install torch==2.1.2 torchvision==0.16.2 torchaudio==2.1.2 --index-url https://download.pytorch.org/whl/cu118
-pip3 install timm==0.6.5 tensorboardX einops torchprofile fvcore==0.1.5.post20221221 
+pip3 install timm==0.9.16 tensorboardX einops torchprofile fvcore==0.1.5.post20221221 triton==2.1.0
 cd model/lib_mamba/kernels/selective_scan && pip install . && cd ../../../..
 git clone https://github.com/NVIDIA/apex && cd apex && pip3 install -v --disable-pip-version-check --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" ./ (optional)
 ```
