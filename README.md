@@ -6,6 +6,7 @@
 --- 
 Official PyTorch implementation of "[**MobileMamba: Lightweight Multi-Receptive Visual Mamba Network**](https://arxiv.org/pdf/2411.15941)".
 <h3>Congratulations! Our MobileMamba has been accepted at the CVPR'25 conference!</h3>
+
 [Haoyang He<sup>1*</sup>](https://scholar.google.com/citations?hl=zh-CN&user=8NfQv1sAAAAJ),
 [Jiangning Zhang<sup>2*</sup>](https://zhangzjn.github.io),
 [Yuxuan Cai<sup>3</sup>](https://scholar.google.com/citations?hl=zh-CN&user=J9lTFAUAAAAJ),
