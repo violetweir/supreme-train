@@ -127,6 +127,12 @@ Download and extract [ImageNet-1K](http://image-net.org/) dataset in the followi
     └── val.txt (optional)
 ```
 
+There are two methods to load ImageNet data. 
+
+The first method uses `imagenet/train.lmdb` for loading. The `train.lmdb` and `val.lmdb` files can be generated using the repository at https://github.com/xunge/pytorch_lmdb_imagenet. On a mechanical hard drive, using LMDB for data I/O increases the speed by approximately ten times compared to the default PyTorch data loading interface. 
+
+The second method uses the original ImageNet data. To use this method, change **line 26 in all the config file** to `data.type = 'DefaultCLS'`. This allows loading from the original ImageNet data, but it is significantly slower.
+
 ## Test
 Test with 8 GPUs in one node:
 
