@@ -1,7 +1,7 @@
 # model settings
 model = dict(
     type='MaskRCNN',
-    # pretrained='torchvision://resnet50',
+    #pretrained='torchvision://resnet50',
     data_preprocessor=dict(
         type='DetDataPreprocessor',
         mean=[123.675, 116.28, 103.53],

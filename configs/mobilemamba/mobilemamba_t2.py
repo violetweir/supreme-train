@@ -24,7 +24,7 @@ if ft:
 # =========> dataset <=================================
 data = _Namespace()
 data.type = 'ImageFolderLMDB'
-data.root = 'data/imagenet'
+data.root = '/Data_8TB/lht/data/ILSVRC'
 data.loader_type = 'pil'
 data.sampler = 'naive'
 data.nb_classes = nb_classes

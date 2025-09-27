@@ -21,7 +21,6 @@ try:
 except ImportError:
     raise ImportError('Please upgrade mmengine >= 0.6.0')
 
-import backbones
 import time
 
 def parse_args():

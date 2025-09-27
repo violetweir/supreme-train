@@ -451,10 +451,16 @@ class MobileMamba(torch.nn.Module):
         else:
             state_dict = torch.load(self.pretrained, map_location='cpu')
             self_state_dict = self.state_dict()
+            old_weight = self_state_dict['blocks3.4.ffn0.m.pw1.c.weight']
             for k, v in state_dict.items():
                 if k in self_state_dict.keys():
                     self_state_dict.update({k: v})
             self.load_state_dict(self_state_dict, strict=True)
+            self_state_dict = self.state_dict()
+            new_weight = self_state_dict['blocks3.4.ffn0.m.pw1.c.weight']
+            print("*"*50)
+            print(old_weight,new_weight)
+            print(old_weight==new_weight)
             print(f'load ckpt from {self.pretrained}')
             print('Model weights initialized.')
 
@@ -495,6 +501,10 @@ class MobileMamba(torch.nn.Module):
                 m.running_var = torch.nan_to_num(m.running_var, nan=0, posinf=1, neginf=-1)
 
     def forward(self, x):
+        self_state_dict = self.state_dict()
+        new_weight = self_state_dict['blocks3.4.ffn0.m.pw1.c.weight']
+        print("*"*50)
+        print("new weight:",new_weight)
         out = []
         x = self.patch_embed(x)
         out.append(x)

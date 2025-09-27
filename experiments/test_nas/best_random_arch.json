@@ -1,0 +1,17 @@
+{
+  "dims": [
+    40,
+    80,
+    160,
+    320
+  ],
+  "depths": [
+    2,
+    3,
+    6,
+    7
+  ],
+  "mlp_ratio": 2.5,
+  "wt_type": "db2",
+  "learnable_wavelet": false
+}

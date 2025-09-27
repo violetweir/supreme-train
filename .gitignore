@@ -1,0 +1,14 @@
+# 忽略所有权重文件
+*.pt
+*.pth
+*.h5
+*.bin
+*.weights
+*.onnx
+*.ckpt
+
+# 或者忽略整个模型目录
+model_weights/
+runs/
+checkpoints/
+downstream/det/work_dirs/

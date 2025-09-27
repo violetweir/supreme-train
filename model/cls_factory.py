@@ -1,5 +1,6 @@
 import model.lib_teacher.tresnet_v2
 import model.mobilemamba.mobilemamba
+import model.starnet.starnet
 
 from timm.models._registry import _model_entrypoints
 from . import MODEL

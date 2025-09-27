@@ -9,8 +9,8 @@ size = 512
 epoch_full = 300
 warmup_epochs = 20
 test_start_epoch = 200
-batch_size = 1024
-lr = 1.5e-3
+batch_size = 256
+lr = 0.375e-3
 weight_decay = 0.05
 nb_classes = 1000
 
@@ -24,7 +24,7 @@ if ft:
 # =========> dataset <=================================
 data = _Namespace()
 data.type = 'ImageFolderLMDB'
-data.root = 'data/imagenet'
+data.root = '/Data_8TB/lht/data/ILSVRC'
 data.loader_type = 'pil'
 data.sampler = 'naive'
 data.nb_classes = nb_classes
