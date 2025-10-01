@@ -1,6 +1,7 @@
 import model.lib_teacher.tresnet_v2
 import model.mobilemamba.mobilemamba
 import model.starnet.starnet
+import model.starnet.starnet_shuffle_ffn
 
 from timm.models._registry import _model_entrypoints
 from . import MODEL
