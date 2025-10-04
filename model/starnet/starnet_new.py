@@ -4,7 +4,7 @@ import torch.nn.functional as F
 import pywt
 #import matplotlib
 from functools import partial
-# from model import MODEL
+from model import MODEL
 #from model.mobilemamba.wt_function.wavelet_transform import WaveletTransform, InverseWaveletTransform
 from timm.models.layers import trunc_normal_, DropPath
 from timm.models.registry import register_model
@@ -150,7 +150,7 @@ def create_wavelet_filter(wave, in_size, out_size, type=torch.float):
     return dec_filters, rec_filters
 
 
-def create_learnable_wavelet_filter (in_size, out_size, filter_size=4, type=torch.float):
+def create_learnable_wavelet_filter (in_size, out_size, filter_size=2, type=torch.float):
     """
     创建可学习的小波滤波器
     
@@ -318,14 +318,20 @@ class FSANet(nn.Module):
         # elif act_layer == "Mish":
         #     act_layer = nn.Mish
         if down_sample == 32:
-            self.patch_embed = torch.nn.Sequential(Conv2d_BN(in_chans, dims[0] // 4, 3, 2, 1), torch.nn.ReLU(),
-                                Conv2d_BN(dims[0] // 4, dims[0] // 2, 3, 1, 1), torch.nn.ReLU(),
+            self.patch_embed = torch.nn.Sequential(Conv2d_BN(in_chans, dims[0] // 4, 3, 2, 1), torch.nn.GELU(),
+                                Conv2d_BN(dims[0] // 4, dims[0] // 2, 3, 1, 1), torch.nn.GELU(),
                                 Conv2d_BN(dims[0] // 2, dims[0], 3, 2, 1)
                            )
         elif down_sample == 64:
-            self.patch_embed = torch.nn.Sequential(Conv2d_BN(in_chans, dims[0] // 4, 3, 2, 1), torch.nn.ReLU(),
-                                Conv2d_BN(dims[0] // 4, dims[0] // 2, 3, 2, 1), torch.nn.ReLU(),
-                                Conv2d_BN(dims[0] // 2, dims[0], 3, 2, 1)
+            # self.patch_embed = torch.nn.Sequential(Conv2d_BN(in_chans, dims[0] // 8, 3, 2, 1), torch.nn.GELU(),
+            #                     Conv2d_BN(dims[0] // 8, dims[0] // 4, 3, 2, 1), torch.nn.GELU(),
+            #                     Conv2d_BN(dims[0] // 4, dims[0] // 2, 3, 2, 1), torch.nn.GELU(),
+            #                     Conv2d_BN(dims[0] // 2, dims[0], 3, 2, 1), 
+            #                )
+            self.patch_embed = torch.nn.Sequential(Conv2d_BN(in_chans, dims[0] // 8, 3, 2, 1), torch.nn.GELU(),
+                            Conv2d_BN(dims[0] // 8, dims[0] // 4, 3, 2, 1), torch.nn.GELU(),
+                            Conv2d_BN(dims[0] // 4, dims[0] // 2, 3, 2, 1), torch.nn.GELU(),
+                            Conv2d_BN(dims[0] // 2, dims[0], 3, 2, 1)
                            )
         self.blocks1 = nn.Sequential()
         self.blocks2 = nn.Sequential()
@@ -341,6 +347,7 @@ class FSANet(nn.Module):
                 blk = blocks[i+1]
                 blk.append(Conv2d_BN(dims[i], dims[i], ks=3, stride=2, pad=1, groups=dims[i]))
                 blk.append(Conv2d_BN(dims[i], dims[i+1], ks=1, stride=1, pad=0))
+                
         
         self.head = BN_Linear(dims[-1], num_classes) if num_classes > 0 else torch.nn.Identity()
     
@@ -433,9 +440,9 @@ CFG_StarAttn_T3_64 = {
 
 CFG_StarAttn_T4_64 = {
         'img_size': 256,
-        'dims': [64,128,256,512],
-        'depth': [0,2,3,2],
-        'drop_path_rate': 0.03,
+        'dims': [128,256,512],
+        'depth': [2,3,2],
+        'drop_path_rate': 0,
         'mlp_ratio': 2,
         "act_layer": "GELU",
         "learnable_wavelet": True,
@@ -467,7 +474,7 @@ CFG_StarAttn_T6_64 = {
     }
 
 
-#@MODEL.register_module
+@MODEL.register_module
 #运算量：282.732M, 参数量：4.023M
 def FSANet_T2(num_classes=1000, pretrained=False, distillation=False, fuse=False, pretrained_cfg=None, model_cfg=CFG_StarAttn_T2):
     model = FSANet(num_classes=num_classes, distillation=distillation, **model_cfg)
@@ -510,7 +517,7 @@ def FSANet_64_T3(num_classes=1000, pretrained=False, distillation=False, fuse=Fa
     model = FSANet(num_classes=num_classes, distillation=distillation, **model_cfg)
     return model
 
-#@MODEL.register_module
+@MODEL.register_module
 #运算量：297.404M, 参数量：7.698M
 def FSANet_64_T4(num_classes=1000, pretrained=False, distillation=False, fuse=False, pretrained_cfg=None, model_cfg=CFG_StarAttn_T4_64):
     model = FSANet(num_classes=num_classes, distillation=distillation, **model_cfg)

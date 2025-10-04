@@ -86,9 +86,13 @@ for device in ['cuda:0']:
         compute_throughput = compute_throughput_cuda
 
     for n, batch_size0, resolution in [
-        # ('MobileMamba_T2', 2048, 192),
+        ('MobileMamba_T2', 2048, 192),
         # ("MobileMamba_T4", 2048, 192),
-        ('StarNet_MHSA_T2_DTW',2048,192),
+        ('FSANet_T2',2048,192),
+        # ('FSANet_64_T4_192',2048,192),
+        # ("StarNet_MHSA_T2_DTW", 2048, 192),
+        # ("FSANet_T2", 2048, 192),
+        ("FSANet_64_T4",2048,256),
         # ('StarNet_MHSA_T4_DTW',2048,192),
         # ("StarNet_MHSA_T6_64_DTW",2048,192)
         # ("StarNet_T2_NEW_CONV", 1024, 192),
@@ -113,7 +117,7 @@ for device in ['cuda:0']:
         model.name = n
         model.model_kwargs = dict(pretrained=False, checkpoint_path='', ema=False, strict=True, num_classes=1000)
         model = get_model(model)
-        # model = fuse_model(model)
+        model = fuse_model(model)
         model.to(device)
         # model.half()
         model.eval()
