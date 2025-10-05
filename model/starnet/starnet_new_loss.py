@@ -241,12 +241,18 @@ class WTAttn(nn.Module):
             self.ll_conv = nn.Conv2d(dim, dim, kernel_size=5, padding=2, groups=dim)
         else :
             self.ll_conv = nn.Conv2d(dim, dim, kernel_size=3, padding=1, groups=dim)
-
+        # self.attn_weight_linear = Conv2d_BN(dim,dim,ks=1)
+        # self.attn_linear = Conv2d_BN(dim,dim,ks=1)
         self.act = nn.Hardsigmoid() # 或者使用 nn.Sigmoid()
+
+        # self.c_act = nn.Hardsigmoid()
+        # self.act = EffectiveSELayer(dim)
+        # self.ese = EffectiveSELayer(dim)
+
     
 
     
-    def forward(self, x):
+    def forward(self, x, training_loss = False):
 
 
         x_wt = self.wt_function(x)
@@ -263,6 +269,12 @@ class WTAttn(nn.Module):
         attn = (self.act((lh_conv * hl_conv )) * ll_conv )+ ll
         wt_map = torch.cat([attn.unsqueeze(2), lh_conv.unsqueeze(2), hl_conv.unsqueeze(2), hh.unsqueeze(2)], dim=2)
         output = self.iwt_function(wt_map)
+        unctional_loss = None
+        if training_loss:
+            wt_real_map = torch.cat([ll.unsqueeze(2), lh.unsqueeze(2), hl.unsqueeze(2), hh.unsqueeze(2)], dim=2)
+            # 计算 MSE 损失
+            functional_loss = F.mse_loss(x, wt_real_map)
+            return output, functional_loss
 
         return output
 
@@ -290,7 +302,7 @@ class Block(nn.Module):
         self.wtattn = Residual(WTAttn(dim, wt_type=wt_type, learnable_wavelet=learnable_wavelet),drop=0)
         self.ffn2 = Residual(FFN(dim, int(dim * ffn_ratio)),drop=0)
     
-    def forward(self, x):
+    def forward(self, x, training_loss = False):
         x_shape = x.shape
         if (x_shape[2] % 2 > 0) or (x_shape[3] % 2 > 0):
             x_pads = (0, x_shape[3] % 2, 0, x_shape[2] % 2)
@@ -298,8 +310,11 @@ class Block(nn.Module):
         x = self.DW(x)
         x = self.ese(x)
         x = self.ffn1(x)
-        x = self.wtattn(x)
+        x, functional_loss = self.wtattn(x)
+
         x = self.ffn2(x)
+        if training_loss and functional_loss is not None:
+            return x, functional_loss
         return x
 
 class FSANet(nn.Module):
@@ -345,15 +360,29 @@ class FSANet(nn.Module):
         
         self.head = BN_Linear(dims[-1], num_classes) if num_classes > 0 else torch.nn.Identity()
     
-    def forward(self, x):
+    def forward(self, x, training_loss=False):
+        functional_losses = []
+
         x = self.patch_embed(x)
-        x = self.blocks1(x)
-        x = self.blocks2(x)
-        x = self.blocks3(x)
-        x = self.blocks4(x)
+
+        # Process each block sequence
+        for block_seq in [self.blocks1, self.blocks2, self.blocks3, self.blocks4]:
+            for layer in block_seq:
+                if training_loss and isinstance(layer, Block):
+                    x, f_loss = layer(x, training_loss=True)
+                    if f_loss is not None:
+                        functional_losses.append(f_loss)
+                else:
+                    x = layer(x)
+
         x = torch.nn.functional.adaptive_avg_pool2d(x, 1).flatten(1)
         x = self.head(x)
-        return x
+
+        if training_loss and functional_losses:
+            total_functional_loss = torch.stack(functional_losses).mean()
+            return x, total_functional_loss
+        else:
+            return x
 
 CFG_StarAttn_T2 = {
         'img_size': 192,

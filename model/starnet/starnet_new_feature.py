@@ -241,12 +241,18 @@ class WTAttn(nn.Module):
             self.ll_conv = nn.Conv2d(dim, dim, kernel_size=5, padding=2, groups=dim)
         else :
             self.ll_conv = nn.Conv2d(dim, dim, kernel_size=3, padding=1, groups=dim)
-
+        # self.attn_weight_linear = Conv2d_BN(dim,dim,ks=1)
+        # self.attn_linear = Conv2d_BN(dim,dim,ks=1)
         self.act = nn.Hardsigmoid() # 或者使用 nn.Sigmoid()
+
+        # self.c_act = nn.Hardsigmoid()
+        # self.act = EffectiveSELayer(dim)
+        # self.ese = EffectiveSELayer(dim)
+
     
 
     
-    def forward(self, x):
+    def forward(self, x, return_features=False):
 
 
         x_wt = self.wt_function(x)
@@ -263,7 +269,21 @@ class WTAttn(nn.Module):
         attn = (self.act((lh_conv * hl_conv )) * ll_conv )+ ll
         wt_map = torch.cat([attn.unsqueeze(2), lh_conv.unsqueeze(2), hl_conv.unsqueeze(2), hh.unsqueeze(2)], dim=2)
         output = self.iwt_function(wt_map)
-
+        if return_features:
+            return output, {
+                'input': x,
+                'll': ll,
+                'lh': lh,
+                'hl': hl,
+                'hh': hh,
+                'hlxlh': lh_conv * hl_conv,
+                'hl+lh': lh_conv + hl_conv,
+                '*attn_weight': self.act(lh_conv * hl_conv),
+                '*attn_no_+': self.act(lh_conv * hl_conv) * ll_conv,
+                '+attn_weight': self.act(lh_conv + hl_conv),
+                'attn': attn,
+                'output': output
+            }
         return output
 
 class EffectiveSELayer(nn.Module):
@@ -302,7 +322,7 @@ class Block(nn.Module):
         x = self.ffn2(x)
         return x
 
-class FSANet(nn.Module):
+class FSANet_Feature(nn.Module):
     def __init__(self, img_size=224, in_chans=3, num_classes=1000, dims=[40,80,160,320], depth=[1,2,4,5], mlp_ratio=2., act_layer="GELU",drop_path_rate=0., distillation=False, head_init_scale=0. ,layer_scale_init_value=0., learnable_wavelet=True,down_sample=32):
         super().__init__()
         # if act_layer == "GELU":
@@ -354,6 +374,49 @@ class FSANet(nn.Module):
         x = torch.nn.functional.adaptive_avg_pool2d(x, 1).flatten(1)
         x = self.head(x)
         return x
+    
+
+    def forward_with_wtattn_features(self, x, stage_idx=0):
+        """
+        返回指定 stage 第一个 WTAttn 的中间特征
+        stage_idx: 0,1,2,3
+        """
+        x = self.patch_embed(x)
+        blocks_list = [self.blocks1, self.blocks2, self.blocks3, self.blocks4]
+        
+        # 前 stage_idx 个 stage 正常前向
+        for i in range(stage_idx):
+            x = blocks_list[i](x)
+        
+        # 在目标 stage 的第一个 block 中提取 WTAttn 特征
+        target_block = blocks_list[stage_idx][0]  # 第一个 block
+        # 手动执行该 block 直到 WTAttn
+        x_shape = x.shape
+        if (x_shape[2] % 2 > 0) or (x_shape[3] % 2 > 0):
+            x_pads = (0, x_shape[3] % 2, 0, x_shape[2] % 2)
+            x = F.pad(x, x_pads)
+        x = target_block.DW(x)
+        x = target_block.ese(x)
+        x = target_block.ffn1(x)
+        
+        # 调用 WTAttn 并返回特征（绕过 Residual）
+        wtattn_output, features = target_block.wtattn.m(x, return_features=True)
+        x_after_wtattn = x + wtattn_output  # 手动加残差
+        
+        # 继续完成该 block
+        x_after_wtattn = target_block.ffn2(x_after_wtattn)
+        
+        # 继续后续 blocks（如果需要最终输出）
+        for i in range(stage_idx, 4):
+            if i == stage_idx:
+                x_rest = blocks_list[i][1:](x_after_wtattn)  # 跳过第一个 block
+            else:
+                x_rest = blocks_list[i](x_rest)
+        
+        final_output = torch.nn.functional.adaptive_avg_pool2d(x_rest, 1).flatten(1)
+        final_output = self.head(final_output)
+
+        return final_output, features
 
 CFG_StarAttn_T2 = {
         'img_size': 192,

@@ -46,7 +46,7 @@ data.test_transforms = [
 
 # =========> model <=================================
 model = _Namespace()
-model.name = 'FSANet_64_T4'
+model.name = 'FSANet_64_T1'
 model.model_kwargs = dict(pretrained=False, checkpoint_path='', ema=False, strict=True, num_classes=data.nb_classes)
 
 # =========> optimizer <=================================
@@ -56,8 +56,8 @@ optim.optim_kwargs = dict(name='adamw', betas=(0.9, 0.999), eps=1e-8, weight_dec
 # =========> trainer <=================================
 trainer = _Namespace()
 trainer.name = 'CLSTrainer'
-trainer.checkpoint = 'runs/fsanet_64/fsanet_t4_64/'
-trainer.resume_dir = ''
+trainer.checkpoint = 'runs/fsanet_64/fsanet_t1_64'
+trainer.resume_dir = 'CLSTrainer_FSANet_64_T1_ImageFolderLMDB_20251004-110859'
 trainer.cuda_deterministic = False
 trainer.epoch_full = epoch_full
 trainer.scheduler_kwargs = dict(
