@@ -443,6 +443,17 @@ CFG_StarAttn_T4_64 = {
         "down_sample": 64
     }
 
+CFG_StarAttn_T5_64 = {
+        'img_size': 256,
+        'dims': [152,304,608],
+        'depth': [2,3,2],
+        'drop_path_rate': 0,
+        'mlp_ratio': 2,
+        "act_layer": "GELU",
+        "learnable_wavelet": True,
+        "down_sample": 64
+    }
+
 
 # CFG_StarAttn_T4_64 = {
 #         'img_size': 224,
@@ -492,8 +503,8 @@ def FSANet_T8(num_classes=1000, pretrained=False, distillation=False, fuse=False
     model = FSANet(num_classes=num_classes, distillation=distillation, **model_cfg)
     return model
 
-
-@MODEL.register_module
+#
+#MODEL.register_module
 #运算量：75.580M, 参数量：2.359M
 def FSANet_64_T1(num_classes=1000, pretrained=False, distillation=False, fuse=False, pretrained_cfg=None, model_cfg=CFG_StarAttn_T1_64):
     model = FSANet(num_classes=num_classes, distillation=distillation, **model_cfg)
@@ -511,9 +522,15 @@ def FSANet_64_T3(num_classes=1000, pretrained=False, distillation=False, fuse=Fa
     model = FSANet(num_classes=num_classes, distillation=distillation, **model_cfg)
     return model
 
-@MODEL.register_module
+#@MODEL.register_module
 #运算量：297.404M, 参数量：7.698M
 def FSANet_64_T4(num_classes=1000, pretrained=False, distillation=False, fuse=False, pretrained_cfg=None, model_cfg=CFG_StarAttn_T4_64):
+    model = FSANet(num_classes=num_classes, distillation=distillation, **model_cfg)
+    return model
+
+@MODEL.register_module
+#运算量：485.102M, 参数量：11.905M
+def FSANet_64_T5(num_classes=1000, pretrained=False, distillation=False, fuse=False, pretrained_cfg=None, model_cfg=CFG_StarAttn_T5_64):
     model = FSANet(num_classes=num_classes, distillation=distillation, **model_cfg)
     return model
 
@@ -543,7 +560,7 @@ if __name__ == "__main__":
     # print(y.shape)
     # print("Model and input are on GPU:", next(model.parameters()).is_cuda)
     # model = StarNet_MHSA(dims=[40,80,160,320], depth=[3, 3, 12, 5], learnable_wavelet=True)
-    model = FSANet_64_T1()
+    model = FSANet_64_T5()
     model.eval()
     model.to("cuda")
     x = torch.randn(1, 3, 256,256).to("cuda")

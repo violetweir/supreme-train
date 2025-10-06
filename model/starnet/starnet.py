@@ -454,7 +454,7 @@ def StarNet_MHSA_T2_DTW(num_classes=1000, pretrained=False, distillation=False, 
     model = StarNet_MHSA(num_classes=num_classes, distillation=distillation, **model_cfg)
     return model
 
-#@MODEL.register_module
+@MODEL.register_module
 def StarNet_MHSA_T4_DTW(num_classes=1000, pretrained=False, distillation=False, fuse=False, pretrained_cfg=None, model_cfg=CFG_StarAttn_T4):
     model = StarNet_MHSA(num_classes=num_classes, distillation=distillation, **model_cfg)
     return model
