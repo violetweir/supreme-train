@@ -5,6 +5,9 @@ import model.starnet.starnet_shuffle_ffn
 import model.starnet.starnet_new
 import model.starnet.starnet_new_shuffle
 import model.starnet.starnt_64_new_192
+import model.fasternet.fasternet
+import model.rewrite_star.restarnet
+import model.efficientvit.build
 
 
 from timm.models._registry import _model_entrypoints

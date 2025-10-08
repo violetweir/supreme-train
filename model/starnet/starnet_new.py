@@ -327,6 +327,11 @@ class FSANet(nn.Module):
                             Conv2d_BN(dims[0] // 4, dims[0] // 2, 3, 2, 1), torch.nn.GELU(),
                             Conv2d_BN(dims[0] // 2, dims[0], 3, 2, 1)
                            )
+        elif down_sample == 642:
+            self.patch_embed = torch.nn.Sequential(Conv2d_BN(in_chans, dims[0] // 4, 3, 2, 1), torch.nn.GELU(),
+                            Conv2d_BN(dims[0] // 4, dims[0] // 2, 3, 2, 1), torch.nn.GELU(),
+                            Conv2d_BN(dims[0] // 2, dims[0] // 1, 3, 2, 1)
+                           )
         self.blocks1 = nn.Sequential()
         self.blocks2 = nn.Sequential()
         self.blocks3 = nn.Sequential()
@@ -401,8 +406,8 @@ CFG_StarAttn_T8 = {
 
 CFG_StarAttn_T1_64 = {
         'img_size': 192,
-        'dims': [72,144,288],
-        'depth': [1,2,2],
+        'dims': [64,128,256],
+        'depth': [2,3,2],
         'drop_path_rate': 0,
         'mlp_ratio': 2,
         "act_layer": "GELU",
@@ -412,8 +417,8 @@ CFG_StarAttn_T1_64 = {
 
 CFG_StarAttn_T2_64 = {
         'img_size': 192,
-        'dims': [96,192,384],
-        'depth': [1,2,2],
+        'dims': [72,144,288],
+        'depth': [2,3,2],
         'drop_path_rate': 0,
         'mlp_ratio': 2,
         "act_layer": "GELU",
@@ -423,8 +428,8 @@ CFG_StarAttn_T2_64 = {
 
 CFG_StarAttn_T3_64 = {
         'img_size': 192,
-        'dims': [120,240,480],
-        'depth': [1,2,2],
+        'dims': [104,208,416],
+        'depth': [2,3,2],
         'drop_path_rate': 0,
         'mlp_ratio': 2,
         "act_layer": "GELU",
@@ -445,8 +450,19 @@ CFG_StarAttn_T4_64 = {
 
 CFG_StarAttn_T5_64 = {
         'img_size': 256,
-        'dims': [152,304,608],
+        'dims': [176,352,704],
         'depth': [2,3,2],
+        'drop_path_rate': 0,
+        'mlp_ratio': 2,
+        "act_layer": "GELU",
+        "learnable_wavelet": True,
+        "down_sample": 64
+    }
+
+CFG_StarAttn_T6_64 = {
+        'img_size': 256,
+        'dims': [160,320,640],
+        'depth': [3,4,3],
         'drop_path_rate': 0,
         'mlp_ratio': 2,
         "act_layer": "GELU",
@@ -503,21 +519,21 @@ def FSANet_T8(num_classes=1000, pretrained=False, distillation=False, fuse=False
     model = FSANet(num_classes=num_classes, distillation=distillation, **model_cfg)
     return model
 
-#
-#MODEL.register_module
-#运算量：75.580M, 参数量：2.359M
+
+@MODEL.register_module
+#运算量：82.871M, 参数量：2.121M
 def FSANet_64_T1(num_classes=1000, pretrained=False, distillation=False, fuse=False, pretrained_cfg=None, model_cfg=CFG_StarAttn_T1_64):
     model = FSANet(num_classes=num_classes, distillation=distillation, **model_cfg)
     return model
 
 #@MODEL.register_module
-#运算量：130.654M, 参数量：4.023M
+#运算量：103.652M, 参数量：2.634M
 def FSANet_64_T2(num_classes=1000, pretrained=False, distillation=False, fuse=False, pretrained_cfg=None, model_cfg=CFG_StarAttn_T2_64):
     model = FSANet(num_classes=num_classes, distillation=distillation, **model_cfg)
     return model
 
 #@MODEL.register_module
-#运算量：200.668M, 参数量：6.125M
+#运算量：209.937M, 参数量：5.235M
 def FSANet_64_T3(num_classes=1000, pretrained=False, distillation=False, fuse=False, pretrained_cfg=None, model_cfg=CFG_StarAttn_T3_64):
     model = FSANet(num_classes=num_classes, distillation=distillation, **model_cfg)
     return model
@@ -528,9 +544,15 @@ def FSANet_64_T4(num_classes=1000, pretrained=False, distillation=False, fuse=Fa
     model = FSANet(num_classes=num_classes, distillation=distillation, **model_cfg)
     return model
 
-@MODEL.register_module
+#@MODEL.register_module
 #运算量：485.102M, 参数量：11.905M
 def FSANet_64_T5(num_classes=1000, pretrained=False, distillation=False, fuse=False, pretrained_cfg=None, model_cfg=CFG_StarAttn_T5_64):
+    model = FSANet(num_classes=num_classes, distillation=distillation, **model_cfg)
+    return model
+
+#@MODEL.register_module
+#运算量：297.404M, 参数量：7.698M
+def FSANet_64_T6(num_classes=1000, pretrained=False, distillation=False, fuse=False, pretrained_cfg=None, model_cfg=CFG_StarAttn_T6_64):
     model = FSANet(num_classes=num_classes, distillation=distillation, **model_cfg)
     return model
 

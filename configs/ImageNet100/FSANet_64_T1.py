@@ -1,4 +1,3 @@
-
 from argparse import Namespace as _Namespace
 from timm.data.constants import IMAGENET_DEFAULT_MEAN as _IMAGENET_DEFAULT_MEAN
 from timm.data.constants import IMAGENET_DEFAULT_STD as _IMAGENET_DEFAULT_STD
@@ -7,15 +6,15 @@ import torchvision.transforms.functional as _F
 # =========> shared <=================================
 seed = 42
 size = 256
-epoch_full = 300
-warmup_epochs = 20
-test_start_epoch = 200
+epoch_full = 100
+warmup_epochs = 5
+test_start_epoch = 60
 batch_size = 1024
 lr = 1.5e-3
 min_lr = 0.5e-5
 warmup_lr = 0.5e-6
 weight_decay = 0.05
-nb_classes = 1000
+nb_classes = 100
 
 ft = False
 if ft:
@@ -27,7 +26,7 @@ if ft:
 # =========> dataset <=================================
 data = _Namespace()
 data.type = 'ImageFolderLMDB'
-data.root = '/Data_8TB/lht/data/ILSVRC'
+data.root = '/Data_8TB/lht/data/ImageNet-100'
 data.loader_type = 'pil'
 data.sampler = 'naive'
 data.nb_classes = nb_classes
@@ -56,8 +55,8 @@ optim.optim_kwargs = dict(name='adamw', betas=(0.9, 0.999), eps=1e-8, weight_dec
 # =========> trainer <=================================
 trainer = _Namespace()
 trainer.name = 'CLSTrainer'
-trainer.checkpoint = 'runs/fsanet_64/fsanet_t1_64'
-trainer.resume_dir = 'CLSTrainer_FSANet_64_T1_ImageFolderLMDB_20251007-101744'
+trainer.checkpoint = 'runs/imageNet100/starnet/StarAttn_new_t2_mhsa_dwt'
+trainer.resume_dir = ''
 trainer.cuda_deterministic = False
 trainer.epoch_full = epoch_full
 trainer.scheduler_kwargs = dict(
@@ -69,7 +68,7 @@ trainer.data = _Namespace()
 trainer.data.batch_size = batch_size
 trainer.data.batch_size_per_gpu = None
 trainer.data.batch_size_test = None
-trainer.data.batch_size_per_gpu_test = 1024
+trainer.data.batch_size_per_gpu_test = 512
 trainer.data.num_workers_per_gpu = 10
 trainer.data.drop_last = True
 trainer.data.pin_memory = True
@@ -83,12 +82,12 @@ trainer.scale_kwargs = dict(n_scale=0, base_h=size, base_w=size, min_h=160, max_
 
 trainer.test_start_epoch = test_start_epoch
 trainer.test_per_epoch = 5
-trainer.save_per_epoch = 15
+trainer.save_per_epoch = 10
 trainer.find_unused_parameters = False
 trainer.sync_BN = 'none'  # [none, native, apex, timm]
 trainer.dist_BN = '' # [ , reduce, broadcast], valid when sync_BN is 'none'
 trainer.scaler = 'native'  # [none, native, apex]
-trainer.ema = 0.9998  # [ None, 0.9998 ]
+trainer.ema = 0.999  # [ None, 0.9998 ]
 
 # =========> loss <=================================
 tea_model = _Namespace()

@@ -323,6 +323,25 @@ CFG_FasterNet_T1 = {
                  'patch_stride2':2,
                  'patch_norn':True,
                  'feature_dim':1280,
+                 'drop_path_rate':0.02,
+                 'layer_scale_init_value':0,
+                 'norm_layer':'BN',
+                 'act_layer':'GELU',
+}
+
+CFG_FasterNet_T2 = {
+                 'in_chans':3,
+                #  'num_classes':1000,
+                 'embed_dim':96,
+                 'depths': [1, 2, 8, 2] ,
+                 'mlp_ratio':2.,
+                 'n_div':4,
+                 'patch_size':4,
+                 'patch_stride':4,
+                 'patch_size2':2,  # for subsequent layers
+                 'patch_stride2':2,
+                 'patch_norn':True,
+                 'feature_dim':1280,
                  'drop_path_rate':0.1,
                  'layer_scale_init_value':0,
                  'norm_layer':'BN',
@@ -336,6 +355,11 @@ def FasterNet_T0(num_classes=1000, pretrained=False, distillation=False, fuse=Fa
 
 @MODEL.register_module
 def FasterNet_T1(num_classes=1000, pretrained=False, distillation=False, fuse=False, pretrained_cfg=None, model_cfg=CFG_FasterNet_T1):
+    model = FasterNet(num_classes=num_classes, distillation=distillation, **model_cfg)
+    return model
+
+@MODEL.register_module
+def FasterNet_T2(num_classes=1000, pretrained=False, distillation=False, fuse=False, pretrained_cfg=None, model_cfg=CFG_FasterNet_T2):
     model = FasterNet(num_classes=num_classes, distillation=distillation, **model_cfg)
     return model
 

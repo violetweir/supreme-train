@@ -87,23 +87,22 @@ for device in ['cuda:0']:
 
     for n, batch_size0, resolution in [
         ('MobileMamba_T2', 2048, 192),
-        # ("MobileMamba_T4", 2048, 192),
-        ('FSANet_T2',2048,192),
-        # ('FSANet_64_T4_192',2048,192),
-        # ("StarNet_MHSA_T2_DTW", 2048, 192),
-        # ("FSANet_T2", 2048, 192),
-        ("FSANet_64_T4",2048,256),
-        # ('StarNet_MHSA_T4_DTW',2048,192),
-        # ("StarNet_MHSA_T6_64_DTW",2048,192)
-        # ("StarNet_T2_NEW_CONV", 1024, 192),
-        # ('StarNet_T4_down64',2048,224),  # change to
-        # ('StarNet_t2_down64',2048,224),
-        # ("StarNet_T4_NEW_CONV",512, 192),
-        # ('StarNet_t2_down64',1024,224),
-        # ('StarNet_T4_down64',512,224),
-        # ("StarNet_T4_NEW_CONV_224_MLP1", 2048, 224),
-        # ("StarNet_T4_NEW_CONV_MDEPTH", 2048, 224),
-        # ("StarNet_T4_NEW_CONV_224", 2048, 224),
+        ('MobileMamba_T4', 2048, 192),
+        ('MobileMamba_S6', 2048, 224),
+        ('MobileMamba_B1', 2048, 256),
+        
+        ('FasterNet_T0',512,224),
+        ('FasterNet_T1',512,224),
+        ('FasterNet_T2',512,224),
+        ("starnet_s1", 1024, 224),
+        ("starnet_s2", 1024, 224),
+        ("starnet_s3", 1024, 224),
+        ("starnet_s4", 1024, 224),
+        ("FSANet_64_T1",512,256),
+        ("FSANet_64_T2",512,256),
+        ("FSANet_64_T3",512,256),
+        ("FSANet_64_T4",512,256),
+        ("FSANet_64_T5",512,256),
     ]:
 
         if device == 'cpu':
@@ -111,6 +110,7 @@ for device in ['cuda:0']:
         else:
             batch_size = batch_size0
             torch.cuda.empty_cache()
+        torch.cuda.empty_cache()
         inputs = torch.randn(batch_size, 3, resolution,
                              resolution, device=device)
         model = _Namespace()
