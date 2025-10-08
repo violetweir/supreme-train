@@ -13,7 +13,7 @@ import torch
 import torch.nn as nn
 from timm.models.layers import DropPath, trunc_normal_
 from timm.models.registry import register_model
-# from model import MODEL
+from model import MODEL
 
 model_urls = {
     "starnet_s1": "https://github.com/ma-xu/Rewrite-the-Stars/releases/download/checkpoints_v1/starnet_s1.pth.tar",
@@ -136,17 +136,17 @@ def starnet_s4(pretrained=False, **kwargs):
 
 
 # very small networks #
-#@MODEL.register_module
+@MODEL.register_module
 def starnet_s050(pretrained=False, **kwargs):
     return StarNet(16, [1, 1, 3, 1], 3, **kwargs)
 
 
-#@MODEL.register_module
+@MODEL.register_module
 def starnet_s100(pretrained=False, **kwargs):
     return StarNet(20, [1, 2, 4, 1], 4, **kwargs)
 
 
-#@MODEL.register_module
+@MODEL.register_module
 def starnet_s150(pretrained=False, **kwargs):
     return StarNet(24, [1, 2, 4, 2], 3, **kwargs)
 
